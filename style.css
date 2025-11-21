@@ -1,0 +1,206 @@
+/* ---------------------- */
+/*  全站主體（手機優化） */
+/* ---------------------- */
+body {
+  margin: 0;
+  padding: 20px 16px;
+  background: linear-gradient(145deg, #ffdce6, #c8ecff, #def4ff);
+  font-family: "Noto Sans TC", sans-serif;
+  color: #234a59;
+  text-align: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* iPhone 安全區 */
+@supports(padding: env(safe-area-inset-bottom)){
+  body { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+}
+
+/* ---------------------- */
+/* 標題區 */
+/* ---------------------- */
+h1 { font-size: 2.1rem; margin:10px 0 5px; color:#1f4f60; letter-spacing:1.5px; }
+h2 { font-size:1.5rem; color:#275d73; margin:5px 0 15px; }
+
+/* ---------------------- */
+/* 題目敘述（玻璃卡片） */
+/* ---------------------- */
+p {
+  font-size: 1.15rem;
+  padding: 18px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 16px rgba(70,100,120,0.18);
+  backdrop-filter: blur(12px);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------------------- */
+/* 按鈕 */
+/* ---------------------- */
+button {
+  background: linear-gradient(135deg, #ff8ba6, #74c7e7);
+  border: none;
+  padding: 14px 28px;
+  font-size: 1.15rem;
+  color: #fff;
+  border-radius: 22px;
+  margin: 10px;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  transition: 0.2s;
+  cursor: pointer;
+}
+button:active { transform: scale(0.92); }
+
+/* ---------------------- */
+/* 輸入框 */
+/* ---------------------- */
+input {
+  padding: 14px;
+  width: 240px;
+  font-size: 1.2rem;
+  border-radius: 18px;
+  border: 2px solid #9cd2e5;
+  outline: none;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(8px);
+  text-align: center;
+}
+
+/* ---------------------- */
+/* 影片區塊 */
+/* ---------------------- */
+#videoPlayer { width:100%; max-width:360px; border-radius:18px; margin-top:22px; box-shadow:0 6px 18px rgba(0,0,0,0.22); background:black; }
+#videoBox { display:flex; justify-content:center; }
+#nextBtnBox { margin-top:20px; }
+
+/* ---------------------- */
+/* 線索提示框 */
+/* ---------------------- */
+#hintBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.85);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  z-index: 9999;
+  width: 85%;
+  max-width: 360px;
+}
+
+.hint {
+  margin: 12px 0;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.3);
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #234a59;
+}
+
+.hint.active::before {
+  content: '';
+  position: absolute;
+  top: -4px; left: -4px; right: -4px; bottom: -4px;
+  border-radius: 16px;
+  background: linear-gradient(90deg,#ff8ba6,#74c7e7,#ff8ba6);
+  z-index: -1;
+  animation: spin 1.8s linear infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes spin {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+#hintBox button { margin-top:10px; padding:6px 12px; border-radius:12px; border:none; background:#ff8ba6; color:#fff; cursor:pointer; }
+
+/* ---------------------- */
+/* 錯誤提示框 */
+/* ---------------------- */
+#errorBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 230, 240, 0.9);
+  padding: 18px 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(200,50,80,0.25);
+  width: 85%;
+  max-width: 360px;
+  z-index: 9999;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+#errorBox.active {
+  opacity: 1;
+}
+#errorBox.active::before {
+  content:'';
+  position:absolute;
+  top:-4px; left:-4px; right:-4px; bottom:-4px;
+  border-radius:18px;
+  background: linear-gradient(90deg,#ff8ba6,#ff5a95,#ff8ba6);
+  z-index:-1;
+  animation: spin 1.8s linear infinite;
+  background-size:300% 300%;
+}
+
+
+#errorBox button { margin-top:12px; padding:6px 12px; border-radius:12px; border:none; background:#fff; color:#d85c7a; font-weight:bold; cursor:pointer; }
+
+/* ---------------------- */
+/* 漂浮泡泡背景 */
+/* ---------------------- */
+#bubbleContainer { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; overflow:hidden; }
+.bubble { position:absolute; border-radius:50%; opacity:0.6; animation:rise linear infinite; }
+@keyframes rise { 0% { transform: translateY(100vh) scale(0.5); opacity:0.3; } 100% { transform: translateY(-50px) scale(1); opacity:0.7; } }
+
+/* ---------------------- */
+/* 粉色光暈漣漪 */
+/* ---------------------- */
+#rippleGlow {
+  position: fixed;
+  top:50%;
+  left:50%;
+  width:200px; height:200px;
+  background: radial-gradient(circle, rgba(255,140,166,0.3) 0%, rgba(255,140,166,0) 70%);
+  border-radius:50%;
+  transform: translate(-50%,-50%) scale(1);
+  animation: ripple 3s ease-out infinite;
+  z-index:-1;
+}
+@keyframes ripple {
+  0% { transform: translate(-50%,-50%) scale(1); opacity:0.4; }
+  50% { transform: translate(-50%,-50%) scale(1.4); opacity:0.2; }
+  100% { transform: translate(-50%,-50%) scale(1.6); opacity:0; }
+}
+
+/* ---------------------- */
+/* 漂浮文字 */
+/* ---------------------- */
+#floatingTextContainer { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+.floatingText { position:absolute; font-size:0.9rem; color: rgba(255,140,166,0.6); animation: floatText 6s ease-in-out infinite; }
+@keyframes floatText { 0% { transform: translateY(100%); opacity:0; } 50% { opacity:1; } 100% { transform: translateY(-20%) rotate(10deg); opacity:0; } }

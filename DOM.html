@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生日禮物</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 背景泡泡容器 -->
+  <div id="bubbleContainer"></div>
+
+  <!-- 粉色光暈漣漪 -->
+  <div id="rippleGlow"></div>
+
+  <!-- 漂浮文字 -->
+  <div id="floatingTextContainer"></div>
+
+  <!-- 主題內容 -->
+  <div id="app"></div>
+
+  <!-- 線索提示框 -->
+  <div id="hintBox" style="display:none;">
+    <div class="hint" id="hint1"></div>
+    <div class="hint" id="hint2"></div>
+    <div class="hint" id="hint3"></div>
+    <button onclick="closeHint()">✖</button>
+  </div>
+
+  <!-- 錯誤提示框 -->
+  <div id="errorBox" style="display:none;">
+    <div id="errorContent"></div>
+    <button onclick="closeError()">✖</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
